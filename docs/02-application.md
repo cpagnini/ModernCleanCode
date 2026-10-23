@@ -25,9 +25,17 @@ Il progetto `ModernCleanCode.Application` referenzia **solo** il Domain e contie
 ```bash
 dotnet test
 ```
-Atteso: 27 test superati (14 Domain + 13 Application), 0 warning.
+Atteso: 28 test superati (15 Domain + 13 Application), 0 warning.
 
 Per vedere l'architecture test in azione: aggiungi un riferimento da `ModernCleanCode.Domain` a `ModernCleanCode.Application` e usa un tipo di quest'ultimo; il test fallisce (o la compilazione si rompe per il riferimento circolare, che è già un segnale).
+
+## Come verificare che sia giusto (tocca a te)
+1. **L'handler salva anche quando fallisce?** Leggi `ChargeToll.cs`: `SaveChangesAsync` deve stare *dopo* `Charge`, mai prima. Poi guarda che ogni test d'errore verifichi `SaveCount == 0`.
+2. **Un solo salvataggio per caso d'uso?** Cerca `SaveChangesAsync` negli handler: una chiamata ciascuno. Due salvataggi vorrebbero dire due transazioni, quindi un possibile stato a metà.
+3. **L'handler contiene regole di business?** Non deve: se vedi `if (saldo < ...)` in un handler, quella regola va nel Domain.
+4. **Il test fallirebbe se rompessi il codice?** Prova una mutazione: commenta la riga `account.Charge(toll)` e lancia i test. Devono fallire.
+5. **I casi non coperti.** La cancellazione è testata solo in `OpenAccountHandler`, non negli altri due. È una lacuna nota, non un errore nascosto.
+6. **Cosa non protegge ancora.** Due richieste simultanee sullo stesso conto: nessun test lo prova, perché oggi non è risolto (vedi sotto).
 
 ## Cosa può rompersi
 - Due `ChargeToll` simultanei sullo stesso conto: entrambi leggono lo stesso saldo. Soluzione allo Step 12 (`rowversion`).

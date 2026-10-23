@@ -13,6 +13,8 @@ public class TollTariffTests
     {
         Assert.Equal(Money.Eur(0.03m), new TollTariff(Money.Eur(0.0333m)).Calculate(0, 1));
         Assert.Equal(Money.Eur(0.04m), new TollTariff(Money.Eur(0.035m)).Calculate(0, 1));
+        // 0.025 distingue AwayFromZero (0.03) dall'arrotondamento al pari (0.02)
+        Assert.Equal(Money.Eur(0.03m), new TollTariff(Money.Eur(0.025m)).Calculate(0, 1));
     }
 
     [Theory]

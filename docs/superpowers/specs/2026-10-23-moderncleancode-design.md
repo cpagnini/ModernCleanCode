@@ -105,6 +105,10 @@ Ogni step = un commit + `docs/NN-titolo.md` con: problema, soluzione, perché co
 
 Per ogni pattern il corso mostra **prima il problema**: un commit con il codice ingenuo e un test che *fallisce* (rosso, marcato chiaramente nel messaggio e nella guida), poi un commit con la correzione che lo rende verde. Gli step che non introducono un pattern restano un solo commit sempre verde. Il messaggio di commit dei commit rossi inizia con `[RED]`, quelli di correzione con `[GREEN]`.
 
+## 7d. Decisione dell'autore: l'AI scrive, l'umano verifica
+
+Il codice lo scrive un'AI; l'umano deve saper giudicare se è giusto. Ogni guida `docs/NN-*.md` ha quindi una sezione **"Come verificare che sia giusto"** con le domande da porsi (regole di business corrette, errori senza stati a metà, test che falliscono davvero con una mutazione, lacune note). Le lacune trovate vanno dichiarate nella guida, non nascoste.
+
 ## 8. Rischi e punti aperti
 
 - Il simulatore deve produrre in modo *riproducibile* duplicati, ritardi e disordine, altrimenti i test sono instabili.

@@ -21,6 +21,10 @@ Ogni step è un commit con la sua guida in `docs/`. Per ogni pattern il corso mo
 
 Gli altri commit sono sempre verdi.
 
+## Filosofia: l'AI scrive, l'umano verifica
+
+Il codice di questo corso è stato scritto con un'AI. Per questo ogni guida ha, oltre a "Perché" e "Cosa può rompersi", una sezione **"Come verificare che sia giusto"**: le domande che un umano deve farsi leggendo quel codice (regole di business giuste? errori che non lasciano stati a metà? i test falliscono davvero se rompo il codice?). Non serve ricordare la sintassi: serve sapere cosa controllare.
+
 ## Indice
 
 | Step | Guida |

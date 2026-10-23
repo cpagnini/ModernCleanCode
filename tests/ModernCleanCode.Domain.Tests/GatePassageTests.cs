@@ -17,6 +17,11 @@ public class GatePassageTests
             GatePassage.Create(Guid.NewGuid(), "  ", "T1", Now, GateDirection.Entry));
 
     [Fact]
+    public void Create_with_blank_transponder_throws() =>
+        Assert.Throws<DomainException>(() =>
+            GatePassage.Create(Guid.NewGuid(), "G1", "", Now, GateDirection.Entry));
+
+    [Fact]
     public void Create_normalizes_time_to_utc()
     {
         var passage = GatePassage.Create(Guid.NewGuid(), "G1", "T1", Now, GateDirection.Exit);
