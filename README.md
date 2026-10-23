@@ -27,5 +27,6 @@ Gli altri commit sono sempre verdi.
 |------|-------|
 | 0 | [Setup](docs/00-setup.md) |
 | 1 | [Domain](docs/01-domain.md) |
+| 2 | [Application](docs/02-application.md) |
 
 Il progetto completo è descritto in [docs/superpowers/specs](docs/superpowers/specs/2026-10-23-moderncleancode-design.md).
