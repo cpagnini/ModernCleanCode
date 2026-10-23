@@ -2,9 +2,11 @@
   <Folder Name="/src/">
     <Project Path="src/ModernCleanCode.Application/ModernCleanCode.Application.csproj" />
     <Project Path="src/ModernCleanCode.Domain/ModernCleanCode.Domain.csproj" />
+    <Project Path="src/ModernCleanCode.Infrastructure/ModernCleanCode.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/ModernCleanCode.Application.Tests/ModernCleanCode.Application.Tests.csproj" />
     <Project Path="tests/ModernCleanCode.Domain.Tests/ModernCleanCode.Domain.Tests.csproj" />
+    <Project Path="tests/ModernCleanCode.Infrastructure.Tests/ModernCleanCode.Infrastructure.Tests.csproj" />
   </Folder>
 </Solution>

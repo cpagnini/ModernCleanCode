@@ -109,6 +109,10 @@ Per ogni pattern il corso mostra **prima il problema**: un commit con il codice 
 
 Il codice lo scrive un'AI; l'umano deve saper giudicare se è giusto. Ogni guida `docs/NN-*.md` ha quindi una sezione **"Come verificare che sia giusto"** con le domande da porsi (regole di business corrette, errori senza stati a metà, test che falliscono davvero con una mutazione, lacune note). Le lacune trovate vanno dichiarate nella guida, non nascoste.
 
+## 7e. Decisione dell'autore: solo euro
+
+`Money` resta in EUR (costante). Il multi-valuta (struttura `Currency`, regola "niente somme tra valute diverse", conto con valuta fissa, conversione dietro `IExchangeRateProvider`) è stato discusso e **rinviato consapevolmente**: un pedaggio italiano è in euro, e il corso resta concentrato su idempotenza e outbox. Se verrà aggiunto, conviene farlo prima che esistano dati nel database (costo: migration su dati esistenti).
+
 ## 8. Rischi e punti aperti
 
 - Il simulatore deve produrre in modo *riproducibile* duplicati, ritardi e disordine, altrimenti i test sono instabili.

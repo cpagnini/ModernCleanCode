@@ -32,5 +32,6 @@ Il codice di questo corso è stato scritto con un'AI. Per questo ogni guida ha, 
 | 0 | [Setup](docs/00-setup.md) |
 | 1 | [Domain](docs/01-domain.md) |
 | 2 | [Application](docs/02-application.md) |
+| 3 | [Infrastructure](docs/03-infrastructure.md) |
 
 Il progetto completo è descritto in [docs/superpowers/specs](docs/superpowers/specs/2026-10-23-moderncleancode-design.md).
