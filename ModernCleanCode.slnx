@@ -1,2 +1,8 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ModernCleanCode.Domain/ModernCleanCode.Domain.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ModernCleanCode.Domain.Tests/ModernCleanCode.Domain.Tests.csproj" />
+  </Folder>
 </Solution>
