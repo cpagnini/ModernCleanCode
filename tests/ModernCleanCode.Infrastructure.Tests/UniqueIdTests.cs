@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using ModernCleanCode.Application.Errors;
 using ModernCleanCode.Domain;
 using ModernCleanCode.Infrastructure.Persistence;
@@ -23,5 +24,21 @@ public class UniqueIdTests(SqlServerFixture fixture) : IClassFixture<SqlServerFi
 
         await Assert.ThrowsAsync<ConflictException>(() =>
             new EfUnitOfWork(secondDb).SaveChangesAsync(Ct));
+    }
+
+    [Fact]
+    public async Task Other_database_errors_are_not_translated_to_conflict()
+    {
+        // Un trigger di test lancia l'errore SQL 50000 solo per il saldo 666,6666:
+        // e' un SqlException che NON e' una violazione di unicita'.
+        await using var db = fixture.CreateContext();
+        await db.Database.ExecuteSqlRawAsync(
+            "CREATE OR ALTER TRIGGER TestBoom ON Accounts AFTER INSERT AS " +
+            "IF EXISTS (SELECT 1 FROM inserted WHERE Balance = 666.6666) THROW 50000, 'boom', 1;", Ct);
+        await new EfAccountRepository(db).AddAsync(Account.Open(Guid.NewGuid(), Money.Eur(666.6666m)), Ct);
+
+        var ex = await Assert.ThrowsAsync<Microsoft.EntityFrameworkCore.DbUpdateException>(() =>
+            new EfUnitOfWork(db).SaveChangesAsync(Ct));
+        Assert.Equal(50000, Assert.IsType<Microsoft.Data.SqlClient.SqlException>(ex.InnerException).Number);
     }
 }
